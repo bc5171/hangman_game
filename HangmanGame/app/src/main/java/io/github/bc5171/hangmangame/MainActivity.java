@@ -7,10 +7,16 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    DBHelper dbhelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbhelper = new DBHelper(this);
+        dbhelper.open();
+
     }
 
     public void handleGameBtn(View view) {
@@ -22,4 +28,17 @@ public class MainActivity extends AppCompatActivity {
         Intent scoresIntent = new Intent(this, HighScores.class);
         startActivity(scoresIntent);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dbhelper.open();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dbhelper.close();
+    }
+
 }

@@ -3,8 +3,6 @@ package io.github.bc5171.hangmangame;
 import android.content.Context;
 import android.database.sqlite.*;
 
-import java.sql.SQLData;
-
 /**
  * Created by Ben on 10/20/2017.
  */
