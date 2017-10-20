@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.github.bc5171.hangmangame.MainActivity">
+    tools:context="io.github.bc5171.hangmangame.Game">
 
     <LinearLayout
         android:layout_width="344dp"
@@ -23,34 +23,32 @@
                 android:layout_height="50sp" />
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvHiddenWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hangman Game"
-                android:textAlignment="center"
-                android:textSize="36sp" />
+                android:text="TextView" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50sp" />
+
+            <EditText
+                android:id="@+id/etInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textCapCharacters"
+                android:text="G U E S S" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="50sp" />
 
             <Button
-                android:id="@+id/btnPlay"
-                android:layout_width="250sp"
-                android:layout_height="wrap_content"
-                android:onClick="handleGameBtn"
-                android:text="Play" />
-
-            <Space
+                android:id="@+id/btnGuess"
                 android:layout_width="match_parent"
-                android:layout_height="50sp" />
-
-            <Button
-                android:id="@+id/btnHighScores"
-                android:layout_width="250sp"
                 android:layout_height="wrap_content"
-                android:onClick="handleScoresBtn"
-                android:text="High Scores" />
+                android:text="Guess" />
 
             <Space
                 android:layout_width="match_parent"
