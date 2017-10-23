@@ -48,17 +48,17 @@ public class InternalDataStorage extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + table_USER + " (" +
-            user_ID + " PRIMARY KEY AUTOINCREMENT, " +
+            user_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             user_OnlineID + " TEXT, " +
             user_TotAttempted + " INT, " +
             user_TotSolved + " INT)");
 
         db.execSQL("CREATE TABLE " + table_WORDS + " (" +
-            words_ID + " PRIMARY KEY AUTOINCREMENT, " +
+            words_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             words_WORD + " TEXT)");
 
         db.execSQL("CREATE TABLE " + table_SAVED + " (" +
-            saved_ID + " PRIMARY KEY AUTOINCREMENT, " +
+            saved_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             saved_Guess + " TEXT, " +
             saved_Word + "TEXT)");
     }

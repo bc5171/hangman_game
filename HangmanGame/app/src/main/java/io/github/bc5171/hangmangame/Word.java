@@ -8,6 +8,7 @@ public class Word {
 
     private int ID;
     private String word;
+    private String guess;
 
     public Word() {}
 
@@ -28,12 +29,18 @@ public class Word {
         return word;
     }
 
+    public String getGuess() { return  guess; }
+
     public void setID(int ID) {
         this.ID = ID;
     }
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public void setGuess(String guess) {
+        this.guess = guess;
     }
 
 }
