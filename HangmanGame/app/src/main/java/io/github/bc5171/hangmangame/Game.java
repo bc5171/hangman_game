@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Game extends AppCompatActivity {
 
@@ -11,6 +12,8 @@ public class Game extends AppCompatActivity {
     DBHelper dbhelper;
     TextView tvWord;
     EditText etGuess;
+    String maskedWord;
+    String guess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,25 +26,49 @@ public class Game extends AppCompatActivity {
         w = dbhelper.getWord();
 
         if (w == null) {
-            retrieveWord();
+            w.setGuess("");
+            w.setWord("Test");
+            //retrieveWord();
         }
 
         etGuess.setText(w.getGuess());
-        tvWord.setText(w.getWord());
-
         maskWord();
-    }
-
-    private void clickHandler() {
+        tvWord.setText(maskedWord);
 
     }
 
-    private void unmaskWord() {
+    public void clickHandler() {
+        guess = etGuess.getText().toString();
+        String word = unmaskWord();
+        if (guess.equals(word)) {
+            Toast.makeText(getApplicationContext(), "Congrats! You've guessed the word!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private String unmaskWord() {
+        char[] guess = etGuess.getText().toString().toCharArray();
+        char[] word = w.getWord().toCharArray();
+
+        int x = 0;
+        for (Character a : guess) {
+            for (Character b : word) {
+                if (a == b) {
+                    guess[x] = b;
+                }
+            }
+            x++;
+        }
+
+        String wholeWord = word.toString();
+        return wholeWord;
     }
 
     private void maskWord() {
-
+        char[] charArayWord = w.getWord().toCharArray();
+        maskedWord = "";
+        for (Character a : charArayWord) {
+            maskedWord = maskedWord + "*";
+        }
     }
 
     private void retrieveWord() {
