@@ -38,6 +38,7 @@
                 android:id="@+id/btnPlay"
                 android:layout_width="250sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:onClick="handleGameBtn"
                 android:text="Play" />
 
@@ -49,6 +50,7 @@
                 android:id="@+id/btnHighScores"
                 android:layout_width="250sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:onClick="handleScoresBtn"
                 android:text="High Scores" />
 
