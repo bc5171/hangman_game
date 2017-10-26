@@ -8,12 +8,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 public class DBHelper {
 
     SQLiteOpenHelper dbhelper;
     SQLiteDatabase database;
+    private static final String TAG = "BEN";
 
     public DBHelper(Context context) {
         dbhelper = new InternalDataStorage(context);
@@ -29,11 +31,17 @@ public class DBHelper {
     }
 
     public Word getWord() {
-        Word w = null;
 
+        Log.i(TAG, "Just entered the getWord() method...");
+        Word w = new Word();
+        w.setGuess("");
+        w.setWord("");
+
+        Log.i(TAG, "About to do a select.");
         String query = "SELECT * FROM " + InternalDataStorage.table_SAVED;
         Cursor cursor = database.rawQuery(query, null);
 
+        Log.i(TAG, "About to see if there are rows.");
         if (cursor.getCount() > 0) {
             w = new Word();
             cursor.moveToFirst();

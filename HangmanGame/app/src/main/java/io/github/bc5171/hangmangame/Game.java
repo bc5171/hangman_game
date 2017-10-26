@@ -2,6 +2,8 @@ package io.github.bc5171.hangmangame;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,8 @@ public class Game extends AppCompatActivity {
     EditText etGuess;
     String maskedWord;
     String guess;
+    InternalDataStorage datasource;
+    private static final String TAG = "BEN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,16 @@ public class Game extends AppCompatActivity {
         tvWord = (TextView)findViewById(R.id.tvHiddenWord);
         etGuess = (EditText)findViewById(R.id.etInput);
 
+        dbhelper = new DBHelper(this);
+        dbhelper.open();
+
+
+        Log.i(TAG, "Now in the game activity class...");
         w = dbhelper.getWord();
 
-        if (w == null) {
+        Log.i(TAG, "Got pass the getWord() method...");
+        if (w.getWord() == "") {
+            Log.i(TAG, "Setting up temp word...");
             w.setGuess("");
             w.setWord("Test");
             //retrieveWord();
@@ -37,12 +48,15 @@ public class Game extends AppCompatActivity {
 
     }
 
-    public void clickHandler() {
+    public void handleGuess(View view) {
         guess = etGuess.getText().toString();
+        Log.i(TAG, "Guess is: " + guess);
         String word = unmaskWord();
         if (guess.equals(word)) {
             Toast.makeText(getApplicationContext(), "Congrats! You've guessed the word!", Toast.LENGTH_SHORT).show();
         }
+        tvWord.setText(word);
+
     }
 
     private String unmaskWord() {
@@ -59,7 +73,11 @@ public class Game extends AppCompatActivity {
             x++;
         }
 
-        String wholeWord = word.toString();
+        String wholeWord = new String(guess);
+
+
+
+
         return wholeWord;
     }
 
