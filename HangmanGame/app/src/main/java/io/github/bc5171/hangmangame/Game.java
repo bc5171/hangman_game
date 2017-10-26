@@ -4,19 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game extends AppCompatActivity {
 
     Word w;
     DBHelper dbhelper;
     TextView tvWord;
-    EditText etGuess;
     String maskedWord;
     String guess;
     InternalDataStorage datasource;
+
+    private List<String> alphabetUpper;
+
     private static final String TAG = "BEN";
 
     @Override
@@ -25,11 +29,11 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         tvWord = (TextView)findViewById(R.id.tvHiddenWord);
-        etGuess = (EditText)findViewById(R.id.etInput);
 
         dbhelper = new DBHelper(this);
         dbhelper.open();
 
+        alphabetUpper = createAlphabetList();
 
         Log.i(TAG, "Now in the game activity class...");
         w = dbhelper.getWord();
@@ -42,43 +46,67 @@ public class Game extends AppCompatActivity {
             //retrieveWord();
         }
 
-        etGuess.setText(w.getGuess());
         maskWord();
         tvWord.setText(maskedWord);
 
     }
 
-    public void handleGuess(View view) {
-        guess = etGuess.getText().toString();
-        Log.i(TAG, "Guess is: " + guess);
-        String word = unmaskWord();
-        if (guess.equals(word)) {
-            Toast.makeText(getApplicationContext(), "Congrats! You've guessed the word!", Toast.LENGTH_SHORT).show();
+    public void handleButton(View view) {
+        switch(view.getId()){
+            case R.id.btnA:
+                
+                break;
+            case R.id.btnB:
+                break;
+            case R.id.btnC:
+                break;
+            case R.id.btnD:
+                break;
+            case R.id.btnE:
+                break;
+            case R.id.btnF:
+                break;
+            case R.id.btnG:
+                break;
+            case R.id.btnH:
+                break;
+            case R.id.btnI:
+                break;
+            case R.id.btnJ:
+                break;
+            case R.id.btnK:
+                break;
+            case R.id.btnL:
+                break;
+            case R.id.btnM:
+                break;
+            case R.id.btnN:
+                break;
+            case R.id.btnO:
+                break;
+            case R.id.btnP:
+                break;
+            case R.id.btnQ:
+                break;
+            case R.id.btnR:
+                break;
+            case R.id.btnS:
+                break;
+            case R.id.btnT:
+                break;
+            case R.id.btnU:
+                break;
+            case R.id.btnV:
+                break;
+            case R.id.btnW:
+                break;
+            case R.id.btnX:
+                break;
+            case R.id.btnY:
+                break;
+            case R.id.btnZ:
+                break;
         }
-        tvWord.setText(word);
-
-    }
-
-    private String unmaskWord() {
-        char[] guess = etGuess.getText().toString().toCharArray();
-        char[] word = w.getWord().toCharArray();
-
-        int x = 0;
-        for (Character a : guess) {
-            for (Character b : word) {
-                if (a == b) {
-                    guess[x] = b;
-                }
-            }
-            x++;
-        }
-
-        String wholeWord = new String(guess);
-
-
-
-
-        return wholeWord;
     }
 
     private void maskWord() {
@@ -87,6 +115,17 @@ public class Game extends AppCompatActivity {
         for (Character a : charArayWord) {
             maskedWord = maskedWord + "*";
         }
+    }
+
+    private List<String> createAlphabetList() {
+        List<String> alphabet = new ArrayList<String>();
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        for (Character a : letters.toCharArray()) {
+            alphabet.add(Character.toString(a));
+        }
+
+        return alphabet;
     }
 
     private void retrieveWord() {
