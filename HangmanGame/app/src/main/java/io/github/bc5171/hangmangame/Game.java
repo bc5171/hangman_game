@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Game extends AppCompatActivity {
 
     // Activity variables
     TextView tvWord;
+    ImageView img;
     Button btnA;
     Button btnB;
     Button btnC;
@@ -41,6 +43,7 @@ public class Game extends AppCompatActivity {
     Button btnX;
     Button btnY;
     Button btnZ;
+    Button play;
 
     // Variables
     String maskedWord;
@@ -58,6 +61,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         tvWord = (TextView)findViewById(R.id.tvHiddenWord);
+        img = (ImageView)findViewById(R.id.imgView);
         btnA = (Button)findViewById(R.id.btnA);
         btnB = (Button)findViewById(R.id.btnB);
         btnC = (Button)findViewById(R.id.btnC);
@@ -84,6 +88,7 @@ public class Game extends AppCompatActivity {
         btnX = (Button)findViewById(R.id.btnX);
         btnY = (Button)findViewById(R.id.btnY);
         btnZ = (Button)findViewById(R.id.btnZ);
+        play = (Button)findViewById(R.id.btnPlay);
 
         dbhelper = new DBHelper(this);
         dbhelper.open();
@@ -115,14 +120,37 @@ public class Game extends AppCompatActivity {
         } else {
             numWrong += 1;
             Log.i(TAG, "Num wrong: " + numWrong);
+
+            switch (numWrong) {
+                case 1:
+                    img.setImageResource(R.drawable.head_body);
+                    break;
+                case 2:
+                    img.setImageResource(R.drawable.head_body_l1);
+                    break;
+                case 3:
+                    img.setImageResource(R.drawable.head_body_l1_l2);
+                    break;
+                case 4:
+                    img.setImageResource(R.drawable.head_body_l1_l2_a1);
+                    break;
+                case 5:
+                    img.setImageResource(R.drawable.head_body_l1_l2_a1_a2);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         if (numWrong >= 5) {
             Toast.makeText(getApplicationContext(), "Oh no! You have guess too many wrong guesses!", Toast.LENGTH_SHORT).show();
+            //play.setText("Play again?");
         }
 
         if (tvWord.getText().toString().equals(w.getWord().toUpperCase())) {
             Toast.makeText(getApplicationContext(), "Congrats! You've guessed the correct word!", Toast.LENGTH_SHORT).show();
+            //play.setText("Play again?");
         }
     }
 
@@ -131,8 +159,8 @@ public class Game extends AppCompatActivity {
         Character.toUpperCase(l);
         int count = 0;
         for (Character z : w.getWord().toCharArray()) {
-            if (z == Character.toUpperCase(z)) {
-                Log.i(TAG, "Letter is in word...");
+            if (l == Character.toUpperCase(z)) {
+                Log.i(TAG, "Letter is in word... ");
                 return true;
             }
             count += 1;
