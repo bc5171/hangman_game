@@ -9,6 +9,7 @@ public class Word {
     private int ID;
     private String word;
     private String guess;
+    private int strikes;
 
     public Word() {}
 
@@ -21,13 +22,18 @@ public class Word {
         this.word = word;
     }
 
+    public Word(int ID, String word, String guess, int strikes) {
+        this.ID = ID;
+        this.word = word;
+        this.guess = guess;
+        this.strikes = strikes;
+    }
+
     public int getID() {
         return ID;
     }
 
-    public String getWord() {
-        return word;
-    }
+    public String getWord() { return word; }
 
     public String getGuess() { return  guess; }
 
@@ -42,5 +48,9 @@ public class Word {
     public void setGuess(String guess) {
         this.guess = guess;
     }
+
+    public void setStrikes(int strikes) { this.strikes = strikes; }
+
+    public int getStrikes() { return strikes; }
 
 }

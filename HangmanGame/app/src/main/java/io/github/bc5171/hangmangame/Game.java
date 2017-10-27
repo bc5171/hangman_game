@@ -4,9 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +18,7 @@ public class Game extends AppCompatActivity {
     String maskedWord;
     String guess;
     InternalDataStorage datasource;
+    Button btnA;
 
     private List<String> alphabetUpper;
 
@@ -29,6 +30,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         tvWord = (TextView)findViewById(R.id.tvHiddenWord);
+        btnA = (Button)findViewById(R.id.btnA);
 
         dbhelper = new DBHelper(this);
         dbhelper.open();
@@ -51,10 +53,17 @@ public class Game extends AppCompatActivity {
 
     }
 
+    public void processLetter(Button btn) {
+        String letter = btn.getText().toString();
+        Log.i(TAG, "Btn: " + letter);
+
+    }
+
     public void handleButton(View view) {
         switch(view.getId()){
             case R.id.btnA:
-                
+
+                btnA.setEnabled(false);
                 break;
             case R.id.btnB:
                 break;
