@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class Game extends AppCompatActivity {
     String maskedWord;
     String guess;
     InternalDataStorage datasource;
+    int numWrong = 0;
     Word w;
     DBHelper dbhelper;
     private List<String> alphabetUpper;
@@ -107,7 +109,36 @@ public class Game extends AppCompatActivity {
     public void processLetter(Button btn) {
         String letter = btn.getText().toString();
         Log.i(TAG, "Btn: " + letter);
-        
+        if (checkLetter(letter)) {
+            unmaskLetter(letter);
+            tvWord.setText(maskedWord);
+        } else {
+            numWrong += 1;
+            Log.i(TAG, "Num wrong: " + numWrong);
+        }
+
+        if (numWrong >= 5) {
+            Toast.makeText(getApplicationContext(), "Oh no! You have guess too many wrong guesses!", Toast.LENGTH_SHORT).show();
+        }
+
+        if (tvWord.getText().toString().equals(w.getWord().toUpperCase())) {
+            Toast.makeText(getApplicationContext(), "Congrats! You've guessed the correct word!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public boolean checkLetter(String letter) {
+        char l = letter.charAt(0);
+        Character.toUpperCase(l);
+        int count = 0;
+        for (Character z : w.getWord().toCharArray()) {
+            if (z == Character.toUpperCase(z)) {
+                Log.i(TAG, "Letter is in word...");
+                return true;
+            }
+            count += 1;
+        }
+        Log.i(TAG, "Letter is not in word..." + count + l);
+        return false;
     }
 
     public void handleButton(View view) {
@@ -225,6 +256,24 @@ public class Game extends AppCompatActivity {
         for (Character a : charArayWord) {
             maskedWord = maskedWord + "*";
         }
+    }
+
+    private void unmaskLetter(String letter) {
+        char b = letter.charAt(0);
+        Character.toUpperCase(b);
+        char[] charArayWord = w.getWord().toCharArray();
+        char[] charUnmaskedWord = tvWord.getText().toString().toCharArray();
+        maskedWord = "";
+        int count = 0;
+        for (Character a : charArayWord) {
+            if (b == Character.toUpperCase(a) && charUnmaskedWord[count] == '*') {
+                maskedWord = maskedWord + b;
+            } else {
+                maskedWord = maskedWord + charUnmaskedWord[count];
+            }
+            count += 1;
+        }
+
     }
 
     private List<String> createAlphabetList() {

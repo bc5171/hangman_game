@@ -166,6 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="M" />
 
                 <Button
@@ -173,6 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="N" />
 
                 <Button
@@ -180,6 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="O" />
 
                 <Button
@@ -187,6 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="P" />
 
                 <Button
@@ -194,6 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="Q" />
 
                 <Button
@@ -201,6 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="R" />
             </LinearLayout>
 
@@ -218,6 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="S" />
 
                 <Button
@@ -225,6 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="T" />
 
                 <Button
@@ -232,6 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="U" />
 
                 <Button
@@ -239,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="V" />
 
                 <Button
@@ -246,6 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="W" />
 
                 <Button
@@ -253,6 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="X" />
             </LinearLayout>
 
@@ -274,6 +286,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="Y" />
 
                 <Button
@@ -281,6 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="handleButton"
                     android:text="Z" />
 
                 <Space
